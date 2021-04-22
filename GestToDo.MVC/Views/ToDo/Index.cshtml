@@ -1,0 +1,19 @@
+﻿@using GestToDo.MVC.Models
+@model IEnumerable<ToDo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+@foreach (ToDo item in Model)
+{
+    @Html.Partial("_PanelToDo", item)
+}
+

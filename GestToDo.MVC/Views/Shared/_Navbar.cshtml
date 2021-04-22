@@ -1,0 +1,40 @@
+﻿@using GestToDo.MVC.Infrastructure
+
+<div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        @if (SessionManager.User is null)
+        {
+            <span class="icon-bar"></span>
+        }
+        @if (SessionManager.IsAdmin == true)
+        {
+            <span class="icon-bar"></span>
+        }
+    </button>
+    @Html.ActionLink("Nom d'application", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+</div>
+<div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+        <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
+        <li>@Html.ActionLink("À propos de", "About", "Home")</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+        @if (SessionManager.User is null)
+        {
+            <li>@Html.ActionLink("Register", "Register", "Auth")</li>
+            <li>@Html.ActionLink("Login", "Login", "Auth")</li>
+        }
+        else
+        {
+            <li>@Html.ActionLink("Logout", "Logout", "Auth")</li>
+        }
+
+        @if (SessionManager.IsAdmin == true)
+        {
+            <li>@Html.ActionLink("Admin", "Index", new { controller = "Home", area = "Admin" })</li>
+        }
+    </ul>
+</div>
